@@ -169,11 +169,11 @@ createReviewHTML = (review) => {
  */
 fillBreadcrumb = (restaurant=self.restaurant) => {
 	const breadcrumb = document.querySelector('.breadcrumb');
-	const li         = document.createElement('li');
+	let template = `
+		<li class="breadcrumb__item">${restaurant.name}</li>
+	`;
 
-	li.classList.add('breadcrumb__item');
-	li.innerHTML = restaurant.name;
-	breadcrumb.appendChild(li);
+	breadcrumb.insertAdjacentHTML('beforeend', template);
 }
 
 /**
