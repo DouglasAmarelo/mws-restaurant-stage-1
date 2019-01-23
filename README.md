@@ -17,7 +17,8 @@ After downloaded, open the project in your terminal and run
 http-server -p 8000 -g
 ```
 
-You can also see this project by accessing [this link](https://douglasamarelo.github.io/mws-restaurant-stage-1/).
+
+
 
 
 ## Additional information
