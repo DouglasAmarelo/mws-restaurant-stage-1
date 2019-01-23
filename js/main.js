@@ -7,11 +7,14 @@ var markers = [];
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
-	registerServiceWorker();
+document.addEventListener('DOMContentLoaded', () => {
 	initMap();
 	fetchNeighborhoods();
 	fetchCuisines();
+});
+
+document.addEventListener('load', () => {
+	registerServiceWorker();
 });
 
 // Register Service Worker
