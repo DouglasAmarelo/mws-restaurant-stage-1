@@ -4,7 +4,7 @@ var newMap;
 /**
  * Initialize map as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', event => {
 	initMap();
 });
 
@@ -38,26 +38,11 @@ initMap = () => {
 	});
 }
 
-/* window.initMap = () => {
-	fetchRestaurantFromURL((error, restaurant) => {
-		if (error) { // Got an error!
-			console.error(error);
-		} else {
-			self.map = new google.maps.Map(document.querySelector('map'), {
-				zoom: 16,
-				center: restaurant.latlng,
-				scrollwheel: false
-			});
-			fillBreadcrumb();
-			DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
-		}
-	});
-} */
 
 /**
  * Get current restaurant from page URL.
  */
-fetchRestaurantFromURL = (callback) => {
+fetchRestaurantFromURL = callback => {
 	if (self.restaurant) { // restaurant already fetched!
 		callback(null, self.restaurant)
 		return;
@@ -90,11 +75,11 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 	let { name, cuisine_type, address } = restaurant;
 
 	let template = `
-		<h1 class="restaurant-name">${name}</h1>
+		<h1 class="restaurant-name" tabindex="0">${name}</h1>
 		<img class="restaurant-img" alt="${name}" src="${DBHelper.imageUrlForRestaurant(restaurant)}" />
-		<p class="restaurant-cuisine">${cuisine_type}</p>
-		<p class="restaurant-address">${address}</p>
-		<table class="restaurant-hours"></table>
+		<p class="restaurant-cuisine" tabindex="0">${cuisine_type}</p>
+		<p class="restaurant-address" tabindex="0">${address}</p>
+		<table class="restaurant-hours" tabfocus="0"></table>
 	`;
 
 	restaurantContainer.insertAdjacentHTML('beforeend', template);
@@ -117,8 +102,8 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 	for (let key in operatingHours) {
 		let template = `
 			<tr>
-				<td>${key}</td>
-				<td>${operatingHours[key]}</td>
+				<td tabindex="0">${key}</td>
+				<td tabindex="0">${operatingHours[key]}</td>
 			</tr>
 		`;
 
@@ -148,10 +133,10 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 /**
  * Create review HTML and add it to the webpage.
  */
-createReviewHTML = (review) => {
-	let {name, date, rating, comments} = review;
+createReviewHTML = review => {
+	let { name, date, rating, comments } = review;
 	let template = `
-		<li class="reviews-list__item">
+		<li class="reviews-list__item"  tabindex="0">
 			<div class="reviews-list__head">
 				<p class="reviews-list__name">${name}</p>
 				<p class="reviews-list__date">${date}</p>
@@ -167,10 +152,10 @@ createReviewHTML = (review) => {
 /**
  * Add restaurant name to the breadcrumb navigation menu
  */
-fillBreadcrumb = (restaurant=self.restaurant) => {
+fillBreadcrumb = (restaurant = self.restaurant) => {
 	const breadcrumb = document.querySelector('.breadcrumb');
 	let template = `
-		<li class="breadcrumb__item">${restaurant.name}</li>
+		<li class="breadcrumb__item" aria-current="page">${restaurant.name}</li>
 	`;
 
 	breadcrumb.insertAdjacentHTML('beforeend', template);

@@ -73,6 +73,8 @@ section { display: block; }
 	width: 100%;
 }
 
+.home .maincontent { margin-top: 400px; }
+
 
 /* Footer */
 .footer {
@@ -121,6 +123,8 @@ section { display: block; }
 	list-style: none;
 	margin: 0;
 	padding: 10px 40px 16px;
+	position: absolute;
+	width: 100%;
 }
 
 @media (min-width: 960px) {
@@ -157,21 +161,35 @@ section { display: block; }
 	width: 100%;
 }
 
+.home .map-container {
+	height: 400px;
+	left: 0;
+	position: absolute;
+	top: 80px;
+	width: 100%;
+}
+
 
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
 	align-items: center;
 	background-color: #135686;
 	display: flex;
-	height: 50px;
+	justify-content: center;
+	padding: 10px;
 	width: 100%;
 }
+
+@media (max-width: 610px) {
+	.filter-options { flex-direction: column; }
+}
+
 .filter-options h2 {
 	color: white;
 	font-size: 1rem;
 	font-weight: normal;
 	line-height: 1;
-	margin: 0 20px;
+	margin: 5px 20px;
 }
 .filter-options select {
 	background-color: white;
@@ -259,7 +277,9 @@ section { display: block; }
 	text-decoration: none;
 	text-transform: uppercase;
 }
-.restaurants-list__link:hover {
+
+a.restaurants-list__link:hover,
+a.restaurants-list__link:focus {
 	background-color: #fff;
 	color: #135686;
 }
